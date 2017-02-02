@@ -93,6 +93,14 @@ html, body { height: 100%; padding: 0; margin: 0; }
     margin-top: 10px;
 }
 
+.cellcenter{
+    text-align: center;
+}
+
+th{
+    text-align: center;
+}
+
 
 
 
