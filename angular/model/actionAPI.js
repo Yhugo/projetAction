@@ -3,12 +3,15 @@ angular.module('ProjetActions').factory('ActionAPI',
         var ActionAPI = function(data) {
             this.name = data.t;
             this.provenance = data.e;
+            this.quantity = 1;
             this.price = data.l;
         }
-
+/*
+        décalé dans le controller
         ActionAPI.prototype.buy = function() {
-            console.log('You buy it !');
+            var action = this;
+            angular.element(document.getElementById('pannelGestion')).scope().ajoutGestion(action);
         }
-
+*/
         return ActionAPI;
     }]);

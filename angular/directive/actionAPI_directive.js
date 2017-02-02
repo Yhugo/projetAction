@@ -3,10 +3,13 @@ angular.module('ProjetActions').directive('actionrecherche',
         return {
             restrict: 'A',
             replace: true,
-            templateUrl: 'angular/template/ActionAPI.html',
+            templateUrl: 'angular/template/ActionAPI.html'/*,
+            Plus besoin
             link: function(scope, element, attrs) {
-                scope.buy = function() { scope.actionsRecherche.buy(); }
-            }
+                scope.buy = function() {
+                    scope.action.buy();
+                }
+            }*/
         }
     }]
 );

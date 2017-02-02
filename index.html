@@ -13,7 +13,7 @@
 <body ng-app='ProjetActions'>
     <div class="container-fluid">
         <div class="row">
-            <div id="pannelRecherche" class="col-md-6 block">
+            <div id="pannelRecherche"  ng-controller="actionAPI_controller" class="col-md-6 block">
                 <div class="input-group" id="adv-search">
                     <input type="text" class="form-control" placeholder="Que veux tu acheter ?" ng-model="nameSearchFom">
                     <div class="input-group-btn">
@@ -23,12 +23,12 @@
                                 <div class="dropdown-menu dropdown-menu-right" role="menu">
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label for="contain">Prix minimal : </label>
-                                            <input class="form-control" type="text">
+                                            <label>Prix minimal : </label>
+                                            <input class="form-control" type="number" value="0" ng-model="valmin">
                                         </div>
                                         <div class="form-group">
-                                            <label for="contain">Prix maximal :</label>
-                                            <input class="form-control" type="text">
+                                            <label>Prix maximal :</label>
+                                            <input class="form-control" type="number" value="99999999" ng-model="valmax">
                                         </div>
                                     </form>
                                 </div>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                <div class="table tablescroll" ng-controller="actionAPI_controller">
+                <div class="table tablescroll">
                     <table class="table table-bordered table-hover cellcenter">
                         <caption class="title">Résultat Recherche : </caption>
                         <thead>
@@ -49,7 +49,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr actionrecherche ng-repeat="action in actionsRecherche | filter:nameSearchFom">
+                        <!-- | myFilter:valmin:valmax -->
+                        <!-- | filter:myFilter -->
+                        <tr actionrecherche ng-repeat="action in actionsRecherche | filter:nameSearchFom |  filter:myFilter ">
                         </tr>
                         </tbody>
                     </table>
@@ -61,21 +63,22 @@
         </div>
 
         <div class="row">
-            <div id="pannelGestion" class="col-md-6 block">
+            <div id="pannelGestion" ng-controller="gestion_controller" class="col-md-6 block">
 
                 <div class="table tablescroll">
-                    <table class="table table-bordered table-hover" id="tablePorteFeuille">
+                    <table class="table table-bordered table-hover cellcenter" id="tablePorteFeuille">
                         <caption class="title">PorteFeuille Action : </caption>
                         <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Name :</th>
-                            <th>Actual Value</th>
-                            <th>Buy :</th>
+                            <th>Nom :</th>
+                            <th>Quantité :</th>
+                            <th>Provenance :</th>
+                            <th>Valeur : </th>
+                            <th>Options :</th>
                         </tr>
                         </thead>
                         <tbody id="myTablePorteFeuille">
-                        <tr>
+                        <tr actiongestion ng-repeat="action in actionsgestion">
                         </tr>
                         </tbody>
                     </table>
@@ -83,7 +86,7 @@
             </div>
             <div id="panelGain" class="col-md-6 block">
                 <p class="title" id="titleCompte"> Compte en Banque : </p>
-                <p id="Gain" class="vcenter">Argent</p>
+                <p id="Gain" class="vcenter">10000</p>
             </div>
         </div>
     </div>
@@ -96,8 +99,11 @@
     <script src="myscript.js"></script>
     <script src="angular/app.js"></script>
     <script src="angular/controller/actionAPI_controller.js"></script>
+    <script src="angular/controller/gestion_controller.js"></script>
     <script src="angular/directive/actionAPI_directive.js"></script>
+    <script src="angular/directive/actionGestion_directive.js"></script>
     <script src="angular/model/ActionAPI.js"></script>
+    <script src="angular/filter/myfilter.js"></script>
 </body>
 
 </html>

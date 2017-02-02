@@ -1,1 +1,1 @@
-angular.module('ProjetActions', []);
+angular.module('ProjetActions', ['ProjetActions.filters']);
